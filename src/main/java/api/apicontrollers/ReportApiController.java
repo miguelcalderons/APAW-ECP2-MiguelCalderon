@@ -1,6 +1,6 @@
-package api.apiControllers;
+package api.apicontrollers;
 
-import api.businessController.ReportBusinessController;
+import api.businesscontroller.ReportBusinessController;
 import api.dtos.ReportDto;
 import api.exceptions.ArgumentNotValidException;
 

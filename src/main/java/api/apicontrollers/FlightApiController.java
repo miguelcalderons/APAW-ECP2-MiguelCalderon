@@ -1,6 +1,6 @@
-package api.apiControllers;
+package api.apicontrollers;
 
-import api.businessController.FlightBusinessController;
+import api.businesscontroller.FlightBusinessController;
 import api.dtos.FlightCreationDto;
 import api.dtos.FlightIdReferenceDto;
 import api.entities.Weather;

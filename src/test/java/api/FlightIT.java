@@ -1,18 +1,15 @@
 package api;
 
-import api.apiControllers.FlightApiController;
-import api.apiControllers.CaptainApiController;
+import api.apicontrollers.FlightApiController;
+import api.apicontrollers.CaptainApiController;
 import api.dtos.CaptainDto;
 import api.dtos.FlightCreationDto;
-import api.dtos.FlightIdReferenceDto;
 import api.entities.Weather;
 import http.Client;
 import http.HttpException;
 import http.HttpRequest;
 import http.HttpStatus;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

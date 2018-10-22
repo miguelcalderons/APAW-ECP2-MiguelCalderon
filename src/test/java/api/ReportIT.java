@@ -1,6 +1,6 @@
 package api;
 
-import api.apiControllers.ReportApiController;
+import api.apicontrollers.ReportApiController;
 import api.dtos.ReportDto;
 import http.Client;
 import http.HttpException;

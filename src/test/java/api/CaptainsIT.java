@@ -1,6 +1,6 @@
 package api;
 
-import api.apiControllers.CaptainApiController;
+import api.apicontrollers.CaptainApiController;
 import api.dtos.CaptainDto;
 import http.Client;
 import http.HttpException;
