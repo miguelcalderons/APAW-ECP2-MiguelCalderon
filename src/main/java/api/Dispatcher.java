@@ -1,18 +1,19 @@
 package api;
 
-import api.apiControllers.CaptainApiController;
 import api.apiControllers.ReportApiController;
+import api.apiControllers.FlightApiController;
+import api.apiControllers.CaptainApiController;
 import api.daos.DaoFactory;
 import api.daos.memory.DaoMemoryFactory;
 import api.dtos.CaptainDto;
 import api.dtos.ReportDto;
+import api.dtos.FlightCreationDto;
 import api.exceptions.ArgumentNotValidException;
 import api.exceptions.NotFoundException;
 import api.exceptions.RequestInvalidException;
 import http.HttpRequest;
 import http.HttpResponse;
 import http.HttpStatus;
-
 public class Dispatcher {
 
     static {
@@ -22,6 +23,8 @@ public class Dispatcher {
     private CaptainApiController captainApiController = new CaptainApiController();
 
     private ReportApiController reportApiController = new ReportApiController();
+
+    private FlightApiController flightApiController = new FlightApiController();
 
     public void submit(HttpRequest request, HttpResponse response) {
         String ERROR_MESSAGE = "{'error':'%S'}";
@@ -54,6 +57,8 @@ public class Dispatcher {
             response.setBody(this.captainApiController.create((CaptainDto) request.getBody()));
         } else if (request.isEqualsPath(ReportApiController.REPORT)) {
             this.reportApiController.create((ReportDto) request.getBody());
+        } else if (request.isEqualsPath(FlightApiController.FLIGHTS)) {
+            response.setBody(this.flightApiController.create((FlightCreationDto) request.getBody()));
         } else {
             throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
         }

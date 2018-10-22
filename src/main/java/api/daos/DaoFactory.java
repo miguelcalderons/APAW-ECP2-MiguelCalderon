@@ -16,4 +16,6 @@ public abstract class DaoFactory {
     public abstract CaptainDao getCaptainDao();
 
     public abstract ReportDao getReportDao();
+
+    public abstract FlightDao flightDao();
 }
