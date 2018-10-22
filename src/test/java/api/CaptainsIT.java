@@ -45,11 +45,27 @@ class CaptainsIT {
     }
 
     @Test
+    void testUpdateCaptain() {
+        String id = this.createCaptain();
+        HttpRequest request = HttpRequest.builder(CaptainApiController.CAPTAINS).path(CaptainApiController.ID_ID)
+                .expandPath(id).body(new CaptainDto("dos")).put();
+        new Client().submit(request);
+    }
+
+    @Test
     void testUpdateCaptainWithoutCaptainDto() {
         String id = this.createCaptain();
         HttpRequest request = HttpRequest.builder(CaptainApiController.CAPTAINS).path(CaptainApiController.ID_ID)
                 .expandPath(id).body(null).put();
         HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
         assertEquals(HttpStatus.BAD_REQUEST, exception.getHttpStatus());
+    }
+
+    @Test
+    void testUpdateCaptainNotFoundException() {
+        HttpRequest request = HttpRequest.builder(CaptainApiController.CAPTAINS).path(CaptainApiController.ID_ID)
+                .expandPath("s5FdeGf54D").body(new CaptainDto("dos")).put();
+        HttpException exception = assertThrows(HttpException.class, () -> new Client().submit(request));
+        assertEquals(HttpStatus.NOT_FOUND, exception.getHttpStatus());
     }
 }

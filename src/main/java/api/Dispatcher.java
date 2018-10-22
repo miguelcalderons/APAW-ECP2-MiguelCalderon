@@ -26,6 +26,9 @@ public class Dispatcher {
                 case POST:
                     this.doPost(request, response);
                     break;
+                case PUT:
+                    this.doPut(request);
+                    break;
                 default: // Unexpected
                     throw new RequestInvalidException("method error: " + request.getMethod());
             }
@@ -45,6 +48,14 @@ public class Dispatcher {
     private void doPost(HttpRequest request, HttpResponse response) {
         if (request.isEqualsPath(CaptainApiController.CAPTAINS)) {
             response.setBody(this.captainApiController.create((CaptainDto) request.getBody()));
+        } else {
+            throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
+        }
+    }
+
+    private void doPut(HttpRequest request) {
+        if (request.isEqualsPath(CaptainApiController.CAPTAINS + CaptainApiController.ID_ID)) {
+            this.captainApiController.update(request.getPath(1), (CaptainDto) request.getBody());
         } else {
             throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
         }

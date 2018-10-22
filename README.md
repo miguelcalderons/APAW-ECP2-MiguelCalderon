@@ -28,7 +28,6 @@
 #### Respuesta
 - 200 OK 
 - 403 BAD_REQUEST
-- 404 NOT_FOUND
 --- 
 ### POST /report
 #### Parámetros del cuerpo
