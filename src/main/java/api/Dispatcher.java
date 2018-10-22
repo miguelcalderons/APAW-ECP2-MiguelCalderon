@@ -1,9 +1,11 @@
 package api;
 
 import api.apiControllers.CaptainApiController;
+import api.apiControllers.ReportApiController;
 import api.daos.DaoFactory;
 import api.daos.memory.DaoMemoryFactory;
 import api.dtos.CaptainDto;
+import api.dtos.ReportDto;
 import api.exceptions.ArgumentNotValidException;
 import api.exceptions.NotFoundException;
 import api.exceptions.RequestInvalidException;
@@ -18,6 +20,8 @@ public class Dispatcher {
     }
 
     private CaptainApiController captainApiController = new CaptainApiController();
+
+    private ReportApiController reportApiController = new ReportApiController();
 
     public void submit(HttpRequest request, HttpResponse response) {
         String ERROR_MESSAGE = "{'error':'%S'}";
@@ -48,6 +52,8 @@ public class Dispatcher {
     private void doPost(HttpRequest request, HttpResponse response) {
         if (request.isEqualsPath(CaptainApiController.CAPTAINS)) {
             response.setBody(this.captainApiController.create((CaptainDto) request.getBody()));
+        } else if (request.isEqualsPath(ReportApiController.REPORT)) {
+            this.reportApiController.create((ReportDto) request.getBody());
         } else {
             throw new RequestInvalidException("request error: " + request.getMethod() + ' ' + request.getPath());
         }
