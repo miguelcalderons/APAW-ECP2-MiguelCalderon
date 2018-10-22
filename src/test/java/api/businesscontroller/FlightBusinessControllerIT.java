@@ -1,4 +1,4 @@
-package api.businessController;
+package api.businesscontroller;
 
 import api.daos.DaoFactory;
 import api.daos.memory.DaoMemoryFactory;

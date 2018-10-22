@@ -1,8 +1,8 @@
 package api;
 
-import api.apiControllers.ReportApiController;
-import api.apiControllers.FlightApiController;
-import api.apiControllers.CaptainApiController;
+import api.apicontrollers.ReportApiController;
+import api.apicontrollers.FlightApiController;
+import api.apicontrollers.CaptainApiController;
 import api.daos.DaoFactory;
 import api.daos.memory.DaoMemoryFactory;
 import api.dtos.CaptainDto;
@@ -27,7 +27,7 @@ public class Dispatcher {
     private FlightApiController flightApiController = new FlightApiController();
 
     public void submit(HttpRequest request, HttpResponse response) {
-        String ERROR_MESSAGE = "{'error':'%S'}";
+        String errorMessage = "{'error':'%S'}";
         try {
             switch (request.getMethod()) {
                 case POST:
@@ -40,14 +40,13 @@ public class Dispatcher {
                     throw new RequestInvalidException("method error: " + request.getMethod());
             }
         } catch (ArgumentNotValidException | RequestInvalidException exception) {
-            response.setBody(String.format(ERROR_MESSAGE, exception.getMessage()));
+            response.setBody(String.format(errorMessage, exception.getMessage()));
             response.setStatus(HttpStatus.BAD_REQUEST);
         } catch (NotFoundException exception) {
-            response.setBody(String.format(ERROR_MESSAGE, exception.getMessage()));
+            response.setBody(String.format(errorMessage, exception.getMessage()));
             response.setStatus(HttpStatus.NOT_FOUND);
         } catch (Exception exception) {  // Unexpected
-            exception.printStackTrace();
-            response.setBody(String.format(ERROR_MESSAGE, exception));
+            response.setBody(String.format(errorMessage, exception));
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
