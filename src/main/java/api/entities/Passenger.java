@@ -2,42 +2,27 @@ package api.entities;
 
 public class Passenger {
 
-    private String id;
+    private int value;
 
     private String name;
 
-    private String email;
+    private Boolean firstClass;
 
-    private boolean firstClass;
-
-    public Passenger(String name, String email) {
+    public Passenger(int value, String name) {
+        this.value = value;
         this.name = name;
-        this.email = email;
     }
 
-    public String getId() {
-        return id;
+    public int getValue() {
+        return this.value;
     }
 
-    public Passenger setId(String id) {
-        this.id = id;
-        return this;
+    public String getName() { return this.name; }
+
+    public void setFirstClass(Boolean firstClass) {this.firstClass = firstClass;}
+
+    public Boolean getDate() {
+        return this.firstClass;
     }
 
-    public String getNick() {
-        return name;
-    }
-
-    public Passenger setNick(String nick) {
-        this.name = name;
-        return this;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

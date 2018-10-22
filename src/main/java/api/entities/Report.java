@@ -1,31 +1,38 @@
 package api.entities;
 
+import java.time.LocalDateTime;
+
 public class Report {
 
     private String id;
 
     private Boolean safeLanding;
 
-    private String message;
+    private String description;
 
-    public Report(Boolean safeLanding, String message) {
+    private LocalDateTime date;
+
+    public Report(Boolean safeLanding, String description) {
         this.safeLanding = safeLanding;
-        this.message = message;
+        this.description = description;
+        this.date = LocalDateTime.now();
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public Boolean getSafeFlight() {
-        return safeLanding;
+    public LocalDateTime getDate() {return this.date;}
+
+    public Boolean getSafeLanding() {
+        return this.safeLanding;
     }
 
-    public String getMessage() {
-        return message;
+    public String getDescription() {
+        return this.description;
     }
 }
