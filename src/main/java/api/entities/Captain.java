@@ -22,12 +22,12 @@ public class Captain {
         return this;
     }
 
-    public String getNick() {
+    public String getname() {
         return name;
     }
 
-    public Captain setNick(String nick) {
-        this.name = nick;
+    public Captain setName(String name) {
+        this.name = name;
         return this;
     }
 
@@ -37,5 +37,14 @@ public class Captain {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Captain{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
